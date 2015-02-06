@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name todoAngularApp.controller:MainCtrl
@@ -7,14 +5,21 @@
  * # MainCtrl
  * Controller of the todoAngularApp
  */
-angular.module('todoAngularApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.todos = [];
-    $scope.addTodo = function() {
-      $scope.todos.push($scope.todo);
-      $scope.todo = '';
-    };
-    $scope.removeTodo = function(index) {
-      $scope.todos.splice(index, 1);
-    };
-  });
+window.app = angular.module('todoAngularApp');
+app.controller('MainCtrl', function ($scope, todos) {
+  $scope.todos = todos;
+});
+app.service('todos', function() {
+  var todos = [];
+  return { /* return an object of functions */
+    get: function() {
+      return todos;
+    },
+    add: function(todo) {
+      todos.push(_.clone(todo)); /* clones js object so reference doesnt match other todos */
+    },
+    remove: function(todo) {
+      _.remove(todos, todo)
+    }
+  }
+});

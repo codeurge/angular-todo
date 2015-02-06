@@ -185,3 +185,16 @@ Started GET "/" for ::1 at 2015-02-06 12:35:00 -0500
 Processing by Rails::WelcomeController#index as HTML
   Rendered /Users/derek/.rvm/gems/ruby-2.2.0@todo/gems/railties-4.2.0/lib/rails/templates/rails/welcome/index.html.erb (1.4ms)
 Completed 200 OK in 16ms (Views: 9.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/todos?authenticity_token=" for ::1 at 2015-02-06 14:23:46 -0500
+Processing by Api::V1::TodosController#index as JSON
+  Parameters: {"authenticity_token"=>""}
+Completed 401 Unauthorized in 9ms
+
+
+Started GET "/api/v1/todos?authenticity_token=" for ::1 at 2015-02-06 14:24:10 -0500
+Processing by Api::V1::TodosController#index as JSON
+  Parameters: {"authenticity_token"=>""}
+  [1m[35mTodo Load (0.4ms)[0m  SELECT "todos".* FROM "todos"  ORDER BY completed ASC, id DESC
+Completed 200 OK in 20ms (Views: 4.7ms | ActiveRecord: 0.6ms)
